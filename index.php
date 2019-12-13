@@ -23,11 +23,17 @@
 // definindo valor padrão para $nomeOk
 
 $nomeOk = true;
+$cpfOk = true;
+$emailOk = true;
+$senhaOk = true;
 
 // Verificando se veio via post
 
 if($_POST){
 	$nomeOk = nomeOk($_POST['nome']);
+	$cpfOk = cpfOk($_POST['cpf']);
+	$emailOk = emailOk($_POST['email']);
+	$senhaOk = senhaOk($_POST['senha']);
 }
 
 
@@ -61,11 +67,14 @@ if($_POST){
 					<input type="text" class="form-control <?= $nomeOk ? '' : 'is-invalid'; ?>" id="nome" name="nome" placeholder="Nome" required>
 					<div class="invalid-feedback">Digite um nome válido</div>
 					<label for="CPF">CPF</label>
-					<input type="text" class="form-control" id="CPF" name="cpf" placeholder="000.000.000-00" required>
+					<input type="text" class="form-control <?= $cpfOk ? '' : 'is-invalid'; ?>" id="CPF" name="cpf" placeholder="000.000.000-00" required>
+					<div class="invalid-feedback">Digite um CPF valido</div>
 					<label for="Email">Email</label>
-					<input type="text" class="form-control" id="Email" name="email" placeholder="Email@dominio.com" required>
+					<input type="text" class="form-control <?= $emailOk ? '' : 'is-invalid'; ?>" id="Email" name="email" placeholder="Email@dominio.com" required>
+					<div class="invalid-feedback">Digite um Email valido</div>
 					<label for="Senha">Senha</label>
-					<input type="password" class="form-control" id="Senha" name="senha" placeholder="Senha" required>
+					<input type="password" class="form-control <?= $senhaOk ? '' : 'is-invalid'; ?>" id="Senha" name="senha" placeholder="Senha" required>
+					<div class="invalid-feedback">Digite um senha valida</div>
 				</div>
 
 
