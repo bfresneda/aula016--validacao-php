@@ -6,24 +6,35 @@
 	require('./includes/validadores.php');
 
 	//validador nome
-	if($_POST){
-	if(nomeOk($_POST['nome'])){
-		echo('Nome ok');
-	}elseif(nomeOk($_POST['nome'] == '')){
-		echo('Escreve ao menos seu nome!');
-	}
-	elseif( $_POST['nome'] < 8){
-		echo('Seu nome esta menor que 8 caracteres.');
-	}
-	else{
-		echo('Seu nome ultrapassou 40 caracteres.');
-	}
-	}
+	// if($_POST){
+	// if(nomeOk($_POST['nome'])){
+	// 	echo('Nome ok');
+	// }elseif(nomeOk($_POST['nome'] == '')){
+	// 	echo('Escreve ao menos seu nome!');
+	// }
+	// elseif( $_POST['nome'] < 8){
+	// 	echo('Seu nome esta menor que 8 caracteres.');
+	// }
+	// else{
+	// 	echo('Seu nome ultrapassou 40 caracteres.');
+	// }
+	// }
 
-	//cpf
-	if($_POST){
+// definindo valor padrão para $nomeOk
+
+$nomeOk = true;
+
+// Verificando se veio via post
+
+if($_POST){
+	$nomeOk = nomeOk($_POST['nome']);
+}
+
+
+	// //cpf
+	// if($_POST){
 	
-	}
+	// }
 
 
 ?>
@@ -47,7 +58,8 @@
 				<form method="post">
 				<div class="form-group">
 					<label for="nome">Nome</label>
-					<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+					<input type="text" class="form-control <?= $nomeOk ? '' : 'is-invalid'; ?>" id="nome" name="nome" placeholder="Nome" required>
+					<div class="invalid-feedback">Digite um nome válido</div>
 					<label for="CPF">CPF</label>
 					<input type="text" class="form-control" id="CPF" name="cpf" placeholder="000.000.000-00" required>
 					<label for="Email">Email</label>
